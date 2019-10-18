@@ -18,8 +18,7 @@
 (disable-proxy)
 (nyan-mode 1)
 (add-hook 'eshell-load-hook 'nyan-prompt-enable)
-
-(setq-default mode-line-format nil)
+;; (setq-default mode-line-format nil)
 (setq-default cursor-type '(bar . 1))
 
 ;; (add-to-list 'default-frame-alist

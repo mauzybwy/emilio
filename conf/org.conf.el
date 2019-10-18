@@ -6,7 +6,7 @@
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 ;; (set-background-color "#fbf8ef")
-(set-background-color "#2b2b2b")
+;; (set-background-color "#2b2b2b")
 
 (let
     ((et-font "EtBembo")
