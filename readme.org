@@ -1,0 +1,11 @@
+#+TITLE: Emilio
+#+AUTHOR: Brandon Wetzel
+
+Sample org-mode style README, mostly just checking how the draw.io stuff looks on github
+
+#+BEGIN_SRC elisp :results raw :exports results :cache yes
+(org-drawio "readme")
+#+END_SRC
+
+#+RESULTS[6568ebd1e9d5ca8153491d28a9e4e366f6c63b0a]:
+[[./org-drawio-diagrams/readme.png]]

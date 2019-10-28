@@ -200,10 +200,11 @@
 ;;; draw.io Org-Mode Integration
 ;;
 (defun org-drawio (diagram-name &optional width)
-  (let* ((diagram-root "~/test/")
+  (let* ((diagram-root "./org-drawio-diagrams/")
 	 (diagram-path-sans-type (concat diagram-root diagram-name))
 	 (diagram-path (concat diagram-path-sans-type ".drawio"))
 	 (diagram-out (concat diagram-path-sans-type ".png")))
+    (shell-command (concat "mkdir " diagram-root))
     (shell-command (concat "drawio -c " diagram-path))
     (if width
 	(shell-command (concat "drawio -x " diagram-path " -o " diagram-out " --width " width))
