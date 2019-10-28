@@ -199,15 +199,22 @@
 ;;;;
 ;;; draw.io Org-Mode Integration
 ;;
-(defun org-drawio (diagram-name)
+(defun org-drawio (diagram-name &optional width)
   (let* ((diagram-root "~/test/")
 	 (diagram-path-sans-type (concat diagram-root diagram-name))
 	 (diagram-path (concat diagram-path-sans-type ".drawio"))
 	 (diagram-out (concat diagram-path-sans-type ".png")))
     (shell-command (concat "drawio -c " diagram-path))
-    (shell-command (concat "drawio -x " diagram-path " -o " diagram-out))
+    (if width
+	(shell-command (concat "drawio -x " diagram-path " -o " diagram-out " --width " width))
+      (shell-command (concat "drawio -x " diagram-path " -o " diagram-out)))
     (org-redisplay-inline-images)
-    (concat "[[" diagram-out "]]")))
+    
+    (if width
+	(format "#+attr_html: :width %s\n#+attr_latex: :width %s\n%s"
+		width width (concat "[[" diagram-out "]]"))
+      (concat "[[" diagram-out "]]"))))
+    
 
 (defun org-drawio-template (diagram-name)
   (interactive "sName of diagram: ")
