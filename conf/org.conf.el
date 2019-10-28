@@ -13,7 +13,7 @@
      (bg-dark "#fbf8ef")
      (bg-white "#1c1e1f")
      (comment "#525254")
-     (lite-code "#f8f0e6")
+     (lite-code "#1c1e1f")
      (doc "#727280")
      (slate "#8FA1B3")
      (gray "#bbb")
@@ -78,11 +78,11 @@
 				:foreground ,bg-dark))))
    `(org-meta-line ((t (:background nil
 				    :height 0.8
-				    :family ,sans-mono-font
+				    :family ,serif-mono-font
 				    :foreground ,slate))))
    `(org-block-end-line ((t (:background nil
 					   :height 0.8
-					   :family ,sans-mono-font
+					   :family ,serif-mono-font
 					   :foreground ,slate))))
    `(org-document-info-keyword ((t (:height 0.8
 					    :foreground ,gray))))
@@ -138,10 +138,13 @@
 ;;
 
 ;; (require 'ob-ipython)
+;; (require 'ob-noweb)
 
-;;(org-babel-do-load-languages
-;; 'org-babel-load-languages
-;; '((python . t)))
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((python . t)))
+
+;; (org-babel-do-load-languages
+ ;; 'org-babel-load-languages '((noweb . t)))
 
 (setq org-confirm-babel-evaluate nil)   ; don't confirm everytime I want to evaluate
 
@@ -193,7 +196,30 @@
       '((sequence "T" "P" "B" "R" "|"
 		  "D" "A")))
 
+;;;;
+;;; draw.io Org-Mode Integration
+;;
+(defun org-drawio (diagram-name)
+  (let* ((diagram-root "~/test/")
+	 (diagram-path-sans-type (concat diagram-root diagram-name))
+	 (diagram-path (concat diagram-path-sans-type ".drawio"))
+	 (diagram-out (concat diagram-path-sans-type ".png")))
+    (shell-command (concat "drawio -c " diagram-path))
+    (shell-command (concat "drawio -x " diagram-path " -o " diagram-out))
+    (org-redisplay-inline-images)
+    (concat "[[" diagram-out "]]")))
 
+(defun org-drawio-template (diagram-name)
+  (interactive "sName of diagram: ")
+  (insert
+   (format "
+#+BEGIN_SRC elisp :results raw :exports results :cache yes
+(org-drawio \"%s\")
+#+END_SRC" diagram-name)))
+
+;;;;
+;;; Use numbers in place of stars for all org-mode buffers
+;;
 (require 'cl)
 (require 'dash)
 (defun org-outline-numbering-overlay ()
