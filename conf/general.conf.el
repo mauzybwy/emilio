@@ -21,6 +21,13 @@
 ;; (setq-default mode-line-format nil)
 (setq-default cursor-type '(bar . 1))
 
+(setq c-default-style "linux"
+      c-basic-offset 4)
+
+(defun my-c-setup ()
+  (c-set-offset 'innamespace [0]))
+(add-hook 'c++-mode-hook 'my-c-setup)
+
 ;; (add-to-list 'default-frame-alist
 ;; 	     '(font . "DejaVu Sans Mono-13"))
 
@@ -59,3 +66,12 @@
 (global-set-key (kbd "M-RET r b") 'revert-buffer)
 (global-set-key (kbd "C-c j") 'previous-multiframe-window)
 (global-set-key (kbd "C-c k") 'next-multiframe-window)
+
+;;;;
+;;; Search etc.
+;;
+(use-package swiper
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper))
+  :init
+  (setq ivy-height 30))

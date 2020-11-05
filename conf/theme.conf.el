@@ -10,6 +10,15 @@
   (zenburn-with-color-variables
     (custom-theme-set-faces
      'zenburn
-     ;; original `(default ((t (:foreground ,zenburn-fg :background ,zenburn-bg))))
+     
+     ;; Change make the background slightly darker, fix mark region color
      `(default ((t (:foreground ,zenburn-fg :background ,zenburn-bg-1))))
+     `(region ((,class (:background ,zenburn-bg+1 :extend t))
+	       (t :inverse-video t)))
+
+     ;; For some reason, this is necessary to fix comment highlighting with
+     ;; the above fix...
+     `(font-lock-comment-delimiter-face ((t (:foreground ,zenburn-green))))
+
+     ;; When using EtBembo, make sure its known as a variable-pitch font
      `(variable-pitch ((t (:family "EtBembo" :width expanded)))))))

@@ -19,6 +19,12 @@
 			     ("http" . "")
 			     ("https" . ""))))
 
+(defun runpy ()
+  (interactive)
+  "Silently run python on the current buffer"
+  (when (eq major-mode 'python-mode)
+    (shell-command-to-string (format "python3 %s" buffer-file-name))))
+
 ;;;;
 ;;; Copy Filename to Clipboard
 ;;
