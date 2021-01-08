@@ -15,7 +15,7 @@
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-i")   'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z")   'helm-select-action)
-  (setq helm-split-window-in-side-p         t ; open helm buffer inside current window,
+  (setq helm-split-window-inside-p         t ; open helm buffer inside current window,
 					      ; not occupy whole other window
       
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when
