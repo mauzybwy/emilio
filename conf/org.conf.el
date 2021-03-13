@@ -13,79 +13,98 @@
      (bg-dark "#fbf8ef")
      (bg-white "#1c1e1f")
      (comment "#525254")
-     (lite-code "#1c1e1f")
+     ;; (lite-code "#5E2750")
+     (lite-code "#1C001E")
      (doc "#727280")
      (slate "#8FA1B3")
      (gray "#bbb")
+     (hidden "#2b2b2b")
      (serif-mono-font "Monospace")
      (sans-mono-font "Monospace Regular"))
   
   (custom-set-faces
    `(variable-pitch ((t (:family et-font
 				 : foreground ,bg-dark))))
-   `(org-hide ((t (:foreground ,bg-white :height 0.7))))
+   `(org-hide ((t (:foreground ,hidden
+			       :height 0.7
+			       :underline nil))))
    `(org-indent ((t (:inherit (org-hide fixed-pitch)))))
    `(org-document-title ((t (:inherit nil
 				      :family et-font
-				      :height 1.8
+				      :height 1.4
 				      :foreground ,bg-dark
 				      :underline nil))))
    `(org-document-info ((t (:slant italic
-				   :height 1.2))))
+				   :foreground ,bg-dark
+				   :height 1.0))))
    `(org-ellipsis ((t (:underline nil
-				  :height 0.7
+				  :height 0.5
 				  :foreground ,bg-dark))))
    `(org-default ((t (:inherit nil
 			       :family et-font
 			       :height 1.0
 			       :weight bold
 			       :slant normal
+			       :underline nil
 			       :foreground ,bg-dark))))
    `(org-level-1 ((t (:inherit nil
 			       :family ,et-font
-			       :height 1.6
+			       :height 1.8
 			       :weight bold
 			       :slant normal
+			       :underline nil
 			       :foreground ,bg-dark))))
    `(org-level-2 ((t (:inherit nil
+			       :family ,et-font
+			       :height 1.5
+			       ;; :slant italic
+			       :slant normal
+			       :weight bold
+			       :underline nil
+			       :foreground ,bg-dark))))
+   `(org-level-3 ((t (:inherit nil
 			       :family ,et-font
 			       :height 1.3
 			       :weight bold
 			       :slant italic
-			       :foreground ,bg-dark))))
-   `(org-level-3 ((t (:inherit nil
-			       :family ,et-font
-			       :height 1.2
-			       :weight bold
-			       :slant italic
+			       :underline nil
 			       :foreground ,bg-dark))))
    `(org-level-4 ((t (:inherit nil
 			       :family ,et-font
 			       :height 1.1
 			       :weight bold
 			       :slant italic
+			       :underline nil
 			       :foreground ,bg-dark))))
    `(org-level-5 ((t (:inherit nil
 			       :family ,et-font
 			       :height 1.0
 			       :weight bold
 			       :slant italic
+			       :underline nil
 			       :foreground ,bg-dark))))
-   ;; `(org-quote ((t (nil))))
+   `(org-quote ((t (:background nil
+				:slant italic))))
    `(org-block ((t (:background ,lite-code
-				:height 0.9
+				:height 0.7
 				:family ,serif-mono-font
 				:foreground ,bg-dark))))
    `(org-meta-line ((t (:background nil
-				    :height 0.8
-				    :family ,serif-mono-font
-				    :foreground ,slate))))
-   `(org-block-end-line ((t (:background nil
-					   :height 0.8
+   				    :height 0.6
+   				    :family ,serif-mono-font
+   				    :foreground ,slate))))
+
+   `(org-block-begin-line ((t (:background nil
+					   :height 0.6
 					   :family ,serif-mono-font
 					   :foreground ,slate))))
-   `(org-document-info-keyword ((t (:height 0.8
-					    :foreground ,gray))))
+   `(org-block-end-line ((t (:background nil
+					   :height 0.6
+					   :family ,serif-mono-font
+					   :foreground ,slate))))
+   `(org-document-info-keyword ((t (:height 0.6
+					    :family ,serif-mono-font
+					    :foreground ,slate))))
    `(org-link ((t (:foreground ,bg-dark))))
    `(org-special-keyword ((t (:family ,sans-mono-font
 				      :height 0.8))))
@@ -111,13 +130,14 @@
 			    :height 0.9
 			    :background ,bg-white))))
    `(org-code ((t (:inherit nil
+			    :background ,lite-code
 			    :family ,serif-mono-font
-			    :foreground ,comment
-			    :height 0.9))))
+			    :foreground ,bg-dark
+			    :height 0.7))))
    `(org-src-block-faces ((t (:inherit nil
 				       :family ,serif-mono-font
 				       :foreground ,comment
-				       :height 0.9))))
+				       :height 0.7))))
    
    
    `(variable-pitch ((t (:family "EtBembo" :width expanded))))
@@ -130,8 +150,10 @@
 
 ;; Startup mode hooks
 (add-hook 'org-mode-hook 'visual-line-mode)
-(add-hook 'org-mode-hook 'numbered-org-mode)
+;; (add-hook 'org-mode-hook 'numbered-org-mode)
 (add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook 'my-set-margins)
+(add-hook 'org-mode-hook 'org-bullets-mode)
 
 ;;;;
 ;;; Source Blocks
@@ -167,13 +189,19 @@
 ;;;;
 ;;; Tweaks
 ;;
-(lambda () (progn
-	     (setq-default left-margin-width 2)
-	     (setq-default right-margin-width 2)
-	     (set-window-buffer nil (current-buffer))))
-(setq org-startup-indented nil
+
+(defun my-set-margins ()
+  "Set margins in current buffer."
+  (text-scale-set 1.5)
+  (setq left-margin-width 2
+	right-margin-width 4
+	left-fringe-width 0
+        right-fringe-width 0))
+
+(setq org-startup-indented t
+      org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
       org-indent-indentation-per-level 1
-      org-adapt-indentation nil      
+      org-adapt-indentation nil
       org-ellipsis " ↴ " ;; folding symbol
       org-pretty-entities t
       org-hide-emphasis-markers t

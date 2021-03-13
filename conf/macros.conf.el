@@ -63,3 +63,25 @@ This allows you to temporarily modify read-only buffers too."
          (primitive-undo (length buffer-undo-list) buffer-undo-list)
          (set-buffer-modified-p modified)))
      nil))
+
+;;;;
+;;; Comment Blocks
+;;
+(defun comment-section-block ()
+  (interactive)
+  (if (member major-mode '(web-mode js-mode c-mode))
+      (progn
+	(insert "/*****************************************************************************")
+	(newline-and-indent)
+	(insert "*")
+	(newline-and-indent)
+	(insert "*****************************************************************************/")
+	(forward-line -1)
+	(indent-according-to-mode)
+	(forward-line 1)
+	(indent-according-to-mode)
+	(forward-line -1)
+	(move-end-of-line 1)
+	(insert " "))
+    (message "flymake-mode is off")))
+(global-set-key (kbd "C-c ;") 'comment-section-block)

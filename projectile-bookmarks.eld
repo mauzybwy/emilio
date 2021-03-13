@@ -1,1 +1,1 @@
-("~/MCC/pitch/pitch-web/" "~/MCC/pitch/pitch-mobile/" "~/.emacs.d/")
+("~/.emacs.d/" "~/")
