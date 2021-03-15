@@ -304,3 +304,45 @@
 ;;     (set-cursor-color "#000000")))
 
 ;; (add-to-list 'display-buffer-alist (cons "org" (cons #'my-show-doc-in-frame nil)))
+
+
+;; Create Code Block
+(defun org-insert-code-block ()
+  (interactive)
+  (if (member major-mode '(org-mode))
+      (progn
+	(insert "#+BEGIN_SRC")
+	(newline)
+	(newline)
+	(insert "#+END_SRC")
+	(forward-line -1))
+    (message "org-mode is off")))
+(add-hook 'org-mode-hook
+          (lambda () (local-set-key (kbd "C-c c b") #'org-insert-code-block)))
+
+;; Electric Indent in Code Block
+(defun org-electric-indent-code-block ()
+  (interactive)
+  (if (org-in-src-block-p)
+      (let* ((elt (org-element-at-point))
+	     (poop (org-element-property :language elt))
+	     (lang (intern (if poop poop "poop")))
+	     (langs org-babel-load-languages))
+	(if (alist-get lang langs)
+	    (newline-and-indent)
+	  (newline)))
+    (newline)))
+
+(add-hook 'org-mode-hook
+          (lambda () (local-set-key (kbd "<return>") #'org-electric-indent-code-block)))
+
+;; Tabs for Source Blocks with no language
+(add-hook 'org-tab-first-hook
+          (lambda ()
+            (when (org-in-src-block-p t)
+              (let* ((elt (org-element-at-point))
+                     (poop (org-element-property :language elt))
+		     (lang (intern (if poop poop "poop")))
+                     (langs org-babel-load-languages))
+                (unless (alist-get lang langs)
+                  (insert (make-string 4 ?\s)))))))
