@@ -75,3 +75,9 @@
          ("C-r" . swiper))
   :init
   (setq ivy-height 30))
+
+;;;;
+;;; Safe local variables
+;;
+(custom-set-variables
+ '(safe-local-variable-values (quote ((eval org-content 2)))))

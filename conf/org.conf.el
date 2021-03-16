@@ -23,6 +23,7 @@
      (sans-mono-font "Monospace Regular"))
   
   (custom-set-faces
+   `(org-archived ((t (:foreground "#DCDCCC" :weight bold :height 0.5))))
    `(variable-pitch ((t (:family et-font
 				 : foreground ,bg-dark))))
    `(org-hide ((t (:foreground ,hidden
@@ -94,11 +95,11 @@
    				    :family ,serif-mono-font
    				    :foreground ,slate))))
 
-   `(org-block-begin-line ((t (:background nil
+   `(org-block-begin-line ((t (:background ,bg-white
 					   :height 0.6
 					   :family ,serif-mono-font
 					   :foreground ,slate))))
-   `(org-block-end-line ((t (:background nil
+   `(org-block-end-line ((t (:background ,bg-white
 					   :height 0.6
 					   :family ,serif-mono-font
 					   :foreground ,slate))))
@@ -138,8 +139,6 @@
 				       :family ,serif-mono-font
 				       :foreground ,comment
 				       :height 0.7))))
-   
-   
    `(variable-pitch ((t (:family "EtBembo" :width expanded))))
    `(org-headline-done ((t (:strike-through t
 					    :family ,et-font)))))
@@ -164,6 +163,9 @@
 
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((js . t)))
 
 ;; (org-babel-do-load-languages
  ;; 'org-babel-load-languages '((noweb . t)))
@@ -208,7 +210,8 @@
       ;; show actually italicized text instead of /italicized text/
       org-agenda-block-separator ""
       org-fontify-whole-heading-line t
-      org-fontify-done-headline t
+      ;; org-fontify-meta-lines-and-blocks t
+      org-fontify-done-headline nil
       org-fontify-quote-and-verse-blocks t
       ;; syntax highlighting in src blocks
       org-src-fontify-natively t
@@ -221,8 +224,12 @@
 ;;; Org Todo Workflows
 ;;
 (setq org-todo-keywords
-      '((sequence "T" "P" "B" "R" "|"
-		  "D" "A")))
+      '((sequence "TODO" "ACTV" "BKLG" "REVW" "|"
+		  "DONE" "ABRT")))
+
+(setq org-todo-keyword-faces
+ '(("ACTV" . "DarkSlateGray1") ("REVW" . "khaki1"))
+ )
 
 ;;;;
 ;;; draw.io Org-Mode Integration
