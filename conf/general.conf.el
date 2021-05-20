@@ -81,3 +81,15 @@
 ;;
 (custom-set-variables
  '(safe-local-variable-values (quote ((eval org-content 2)))))
+
+;;;;
+;;; No tabs
+;;
+(setq-default indent-tabs-mode nil)
+
+;;;;
+;;; Smooth Scrolling
+;;
+(use-package smooth-scrolling
+  :init
+  (setq smooth-scroll-margin 1))
