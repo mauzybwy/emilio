@@ -56,7 +56,14 @@
   :ensure t
   :config
   (flycheck-add-next-checker 'tsx-tide 'javascript-eslint)
+  (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
   :hook (web-mode . my/activate-tide-mode))
+
+(add-hook 'js2-mode-hook
+          (defun my-js2-mode-setup ()
+            (flycheck-mode t)
+            (when (executable-find "eslint")
+              (flycheck-select-checker 'javascript-eslint))))
 
 (use-package flycheck
   :ensure t
@@ -66,6 +73,7 @@
   (setq flycheck-python-pycompile-executable (executable-find "python3"))
   :config
   (flycheck-add-mode 'javascript-eslint 'web-mode)
+  ;; (flycheck-add-mode 'typescript-tide 'web-mode)
   (setq flycheck-check-syntax-automatically '(mode-enabled save))
   (global-flycheck-mode 1))
 

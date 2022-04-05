@@ -15,9 +15,8 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (column-number-mode 1)
-(disable-proxy)
 (nyan-mode 1)
-(add-hook 'eshell-load-hook 'nyan-prompt-enable)
+;; (add-hook 'eshell-load-hook 'nyan-prompt-enable)
 ;; (setq-default mode-line-format nil)
 (setq-default cursor-type '(bar . 1))
 
@@ -34,7 +33,7 @@
 ;;;;
 ;;; Save Sessions
 ;;
-(desktop-save-mode 1)
+(desktop-save-mode 0)
 
 ;;;;
 ;;;  General Editing Settings
@@ -93,3 +92,4 @@
 (use-package smooth-scrolling
   :init
   (setq smooth-scroll-margin 1))
+(smooth-scrolling-mode 1)

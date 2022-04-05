@@ -85,3 +85,12 @@ This allows you to temporarily modify read-only buffers too."
 	(insert " "))
     (message "flymake-mode is off")))
 (global-set-key (kbd "C-c ;") 'comment-section-block)
+
+(defun comment-section-line ()
+  (interactive)
+  (if (member major-mode '(web-mode js-mode c-mode))
+      (progn
+	(insert "/****************************************************************************/")
+        (newline-and-indent))
+    (message "flymake-mode is off")))
+(global-set-key (kbd "C-c C-;") 'comment-section-line)
