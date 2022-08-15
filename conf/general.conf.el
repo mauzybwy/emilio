@@ -93,3 +93,8 @@
   :init
   (setq smooth-scroll-margin 1))
 (smooth-scrolling-mode 1)
+
+;;;;
+;;; PATH
+;;
+(add-to-list 'exec-path "/home/mauzy/.nvm/versions/node/v16.14.0/bin") 

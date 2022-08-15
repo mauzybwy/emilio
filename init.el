@@ -14,7 +14,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-quickhelp nyan-mode elpy jedi-core arduino-mode arduino-cli-mode writeroom-mode web-mode vlf use-package tide smooth-scrolling scad-mode rjsx-mode rainbow-mode org-plus-contrib org-bullets org ob-ipython magit highlight-indent-guides helm-projectile gdscript-mode fill-column-indicator ein counsel-projectile counsel-etags cmake-mode add-node-modules-path)))
+    (pylint docker dockerfile-mode company-quickhelp nyan-mode elpy jedi-core arduino-mode arduino-cli-mode writeroom-mode web-mode vlf use-package tide smooth-scrolling scad-mode rjsx-mode rainbow-mode org-plus-contrib org-bullets org ob-ipython magit highlight-indent-guides helm-projectile gdscript-mode fill-column-indicator ein counsel-projectile counsel-etags cmake-mode add-node-modules-path)))
  '(safe-local-variable-values (quote ((eval org-content 2)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -18,6 +18,8 @@
   (setq python-indent-offset 4
         python-indent 4)
   )
+(add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
+
 
 (use-package company-quickhelp
   :config
