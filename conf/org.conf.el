@@ -15,6 +15,7 @@
      (comment "#525254")
      ;; (lite-code "#5E2750")
      (lite-code "#1C001E")
+     ;; (lite-code "#2b2b2b")
      (doc "#727280")
      (slate "#8FA1B3")
      (gray "#bbb")
@@ -24,8 +25,9 @@
   
   (custom-set-faces
    `(org-archived ((t (:foreground "#DCDCCC" :weight bold :height 0.5))))
-   `(variable-pitch ((t (:family et-font
-				 : foreground ,bg-dark))))
+   `(variable-pitch ((t (:family ,et-font
+                                 :height 1.2
+        			 : foreground ,bg-dark))))
    `(org-hide ((t (:foreground ,hidden
 			       :height 0.7
 			       :underline nil))))
@@ -87,7 +89,7 @@
    `(org-quote ((t (:background nil
 				:slant italic))))
    `(org-block ((t (:background ,lite-code
-				:height 0.7
+				:height 0.9
 				:family ,serif-mono-font
 				:foreground ,bg-dark))))
    `(org-meta-line ((t (:background nil
@@ -95,11 +97,11 @@
    				    :family ,serif-mono-font
    				    :foreground ,slate))))
 
-   `(org-block-begin-line ((t (:background ,bg-white
+   `(org-block-begin-line ((t (:background "#022"
 					   :height 0.6
 					   :family ,serif-mono-font
 					   :foreground ,slate))))
-   `(org-block-end-line ((t (:background ,bg-white
+   `(org-block-end-line ((t (:background "#022"
 					   :height 0.6
 					   :family ,serif-mono-font
 					   :foreground ,slate))))
@@ -139,7 +141,6 @@
 				       :family ,serif-mono-font
 				       :foreground ,comment
 				       :height 0.7))))
-   `(variable-pitch ((t (:family "EtBembo" :width expanded))))
    `(org-headline-done ((t (:strike-through t
 					    :family ,et-font)))))
   )
@@ -167,6 +168,9 @@
 (org-babel-do-load-languages
  'org-babel-load-languages '((js . t)))
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((shell . t)))
+
 ;; (org-babel-do-load-languages
  ;; 'org-babel-load-languages '((noweb . t)))
 
@@ -177,9 +181,9 @@
 ;;   '((t (:underline "#A7A6AA" :foreground "#ACDCCC" :background "#4f4f4f")))
 ;;   "Face used for the line delimiting the begin of source blocks.")
 
-(defface org-block-background
-  '((t (:background "#353535")))
-  "Face used for the source block background.")
+;; (defface org-block-background
+;;   '((t (:background "#353535")))
+;;   "Face used for the source block background.")
 
 ;; (defface org-block-end-line
 ;;   '((t (:overline "#A7A6AA" :foreground "#ACDCCC" :background "#4f4f4f")))
@@ -202,7 +206,7 @@
 
 (setq org-startup-indented t
       org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
-      org-indent-indentation-per-level 1
+      org-indent-indentation-per-level 2
       org-adapt-indentation nil
       org-ellipsis " ↴ " ;; folding symbol
       org-pretty-entities t

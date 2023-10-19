@@ -6,12 +6,14 @@
 (use-package helm
   :bind (("M-x"     . helm-M-x)
 	 ("C-x C-b" . helm-buffers-list)
+         ("C-x b"   . helm-mini)
          ("C-x C-f" . helm-find-files)
          ([S-f10]   . helm-recentf))
   
   :init
   (require 'helm)
-  (require 'helm-config)
+  (require 'helm-xref)
+  ;; (require 'helm-config)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-i")   'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z")   'helm-select-action)

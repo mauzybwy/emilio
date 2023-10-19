@@ -85,6 +85,7 @@
   :config
   (setq web-mode-content-types-alist '(("jsx" . "\\.[jt]sx?\\'")))
   (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-enable-auto-indentation nil)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-script-padding 2)

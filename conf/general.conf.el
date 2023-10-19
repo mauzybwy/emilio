@@ -16,6 +16,7 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (nyan-mode 1)
+(which-key-mode)
 ;; (add-hook 'eshell-load-hook 'nyan-prompt-enable)
 ;; (setq-default mode-line-format nil)
 (setq-default cursor-type '(bar . 1))
@@ -97,4 +98,16 @@
 ;;;;
 ;;; PATH
 ;;
-(add-to-list 'exec-path "/home/mauzy/.nvm/versions/node/v16.14.0/bin") 
+(add-to-list 'exec-path "/Users/mauzy/.nvm/versions/node/v16.18.1/bin")
+(add-to-list 'exec-path "/Users/mauzy/.local/bin")
+(add-to-list 'exec-path "/opt/homebrew/bin")
+
+;;;;
+;;; Mac
+;;
+(setq mac-command-modifier 'meta)
+
+;;;;
+;;; Jumping
+;;
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
