@@ -15,8 +15,16 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (column-number-mode 1)
-(nyan-mode 1)
-(which-key-mode)
+
+(use-package nyan-mode
+  :ensure t
+  :init
+  (nyan-mode))
+
+(use-package which-key
+  :init
+  (which-key-mode))
+
 ;; (add-hook 'eshell-load-hook 'nyan-prompt-enable)
 ;; (setq-default mode-line-format nil)
 (setq-default cursor-type '(bar . 1))
@@ -53,19 +61,21 @@
 ;;;;
 ;;;  Backups
 ;;
-(setq backup-directory-alist `(("." . "~/.emacs.d/.saves")))
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+(setq make-backup-files nil) ; stop creating ~ files
+;; (setq backup-directory-alist '(("." . "/Users/mauzy/.emacs.d/.saves")))
+;; (setq delete-old-versions t
+;;   kept-new-versions 6
+;;   kept-old-versions 2
+;;   version-control t)
 
 ;;;;
 ;;; Keybindings
 ;;
 (global-set-key (kbd "M-RET e b") 'eval-buffer)
 (global-set-key (kbd "M-RET r b") 'revert-buffer)
-(global-set-key (kbd "C-c j") 'previous-multiframe-window)
-(global-set-key (kbd "C-c k") 'next-multiframe-window)
+;; (global-set-key (kbd "C-c j") 'previous-multiframe-window)
+;; (global-set-key (kbd "C-c k") 'next-multiframe-window)
+(global-set-key (kbd "C-c j q") 'counsel-jq)
 
 ;;;;
 ;;; Search etc.
@@ -92,15 +102,26 @@
 ;;
 (use-package smooth-scrolling
   :init
+  (smooth-scrolling-mode 1)
   (setq smooth-scroll-margin 1))
-(smooth-scrolling-mode 1)
 
 ;;;;
 ;;; PATH
 ;;
-(add-to-list 'exec-path "/Users/mauzy/.nvm/versions/node/v16.18.1/bin")
-(add-to-list 'exec-path "/Users/mauzy/.local/bin")
-(add-to-list 'exec-path "/opt/homebrew/bin")
+;; (when (memq window-system '(mac ns x))
+;;   (exec-path-from-shell-initialize))
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns x))
+  :config
+  (setq exec-path-from-shell-variables '("PATH" "HOME"))
+  (exec-path-from-shell-initialize))
+
+;; (add-to-list 'exec-path "/opt/homebrew/bin")
+;; (add-to-list 'exec-path "/Users/mauzy/.local/bin")
+;; (add-to-list 'exec-path "/Users/mauzy/.nvm/versions/node/v16.18.1/bin")
+;; (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+
 
 ;;;;
 ;;; Mac
@@ -111,3 +132,16 @@
 ;;; Jumping
 ;;
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
+;;;;
+;;; Grep
+;;
+(eval-after-load 'grep
+  '(progn
+     (add-to-list 'grep-find-ignored-directories "tmp")
+     (add-to-list 'grep-find-ignored-directories "node_modules")
+     (add-to-list 'grep-find-ignored-directories ".bundle")
+     (add-to-list 'grep-find-ignored-directories "auto")
+     (add-to-list 'grep-find-ignored-directories "elpa")))
+(setq wgrep-enable-key (kbd "C-c C-c"))
+(add-hook 'grep-mode-hook (lambda () (toggle-truncate-lines 1)))

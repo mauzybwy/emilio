@@ -111,6 +111,8 @@
    `(org-link ((t (:foreground ,bg-dark))))
    `(org-special-keyword ((t (:family ,sans-mono-font
 				      :height 0.8))))
+   `(org-todo ((t (:height 0.6))))
+   `(org-done ((t (:height 0.6))))
    ;; `(org-todo ((t (nil))))
    ;; `(org-done ((t (nil))))
    ;; `(org-agenda-current-time ((t (nil))))
@@ -222,6 +224,8 @@
       ; less shitty indentation in src blocks
       org-src-preserve-indentation t
       org-src-tab-acts-natively t
+      org-clock-in-switch-to-state "ACTV"
+      org-clock-out-switch-to-state "TODO"
       )
 
 ;;;;
@@ -357,3 +361,13 @@
                      (langs org-babel-load-languages))
                 (unless (alist-get lang langs)
                   (insert (make-string 4 ?\s)))))))
+
+(use-package org-roam
+  :custom
+  (org-roam-directory "/Users/mauzy/Logseq")
+  (org-roam-dailies-directory "journals/")
+  (org-roam-capture-templates
+   '(("d" "default" plain
+      "%?" :target
+      (file+head "pages/${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t))))

@@ -22,3 +22,5 @@
 ;; (require 'diminish)
 ;; (require 'bind-key)
 
+
+(load-file "~/.emacs.d/pkg/org-bars.el")

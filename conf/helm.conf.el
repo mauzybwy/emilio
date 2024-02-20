@@ -28,4 +28,11 @@
       
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       
-      helm-ff-file-name-history-use-recentf t))
+      helm-ff-file-name-history-use-recentf t)
+
+  :config
+  (add-to-list 'helm-grep-ignored-directories "node_modules"))
+
+(use-package wgrep
+  :ensure t
+  :config (use-package wgrep-helm :ensure t))

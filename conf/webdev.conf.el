@@ -81,9 +81,9 @@
 (use-package web-mode
   :ensure t
   :mode
-  ("\\.ejs\\'" "\\.hbs\\'" "\\.html\\'" "\\.php\\'" "\\.[jt]sx?\\'")
+  ("\\.ejs\\'" "\\.hbs\\'" "\\.html\\'" "\\.php\\'" "\\.m?[jt]sx?\\'")
   :config
-  (setq web-mode-content-types-alist '(("jsx" . "\\.[jt]sx?\\'")))
+  (setq web-mode-content-types-alist '(("jsx" . "\\.m?[jt]sx?\\'")))
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-enable-auto-indentation nil)
   (setq web-mode-css-indent-offset 2)
