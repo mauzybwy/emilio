@@ -6,6 +6,31 @@
 ;;;;
 ;;;  System Constants
 ;;
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(setq package-enable-at-startup nil)
+(straight-use-package 'use-package)
+
+(setq-default frame-title-format "EMACSSS")
+
+
+;;;;
+;;;  System Constants
+;;
 (setq ido-max-directory-size 100000)
 
 ;;;;
@@ -117,7 +142,7 @@
   (setq exec-path-from-shell-variables '("PATH" "HOME"))
   (exec-path-from-shell-initialize))
 
-;; (add-to-list 'exec-path "/opt/homebrew/bin")
+(add-to-list 'exec-path "/Users/mauzy/Library/pnpm")
 ;; (add-to-list 'exec-path "/Users/mauzy/.local/bin")
 ;; (add-to-list 'exec-path "/Users/mauzy/.nvm/versions/node/v16.18.1/bin")
 ;; (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))

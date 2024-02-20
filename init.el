@@ -9,7 +9,7 @@
  '(custom-safe-themes
    '("624f3b1e86a81d1873b93edc3cce0947f2042bfeebecc480b393ff1e0aa4abfd" "4c7228157ba3a48c288ad8ef83c490b94cb29ef01236205e360c2c4db200bb18" default))
  '(package-selected-packages
-   '(counsel-jq fsharp-mode lsp-ui multiple-cursors org-roam flycheck-projectile wgrep-helm wgrep helm-ag lsp-pyright string-inflection sql-indent sqlup-mode elm-mode lsp-rescript rescript-mode yaml-mode csharp-mode auctex async dap-mode json-mode helm-xref which-key company projectile helm-lsp lsp-treemacs lsp-mode nord-theme nano-modeline helm-org exec-path-from-shell dumb-jump swift-mode flycheck-swift3 helm-core helm pylint docker dockerfile-mode company-quickhelp nyan-mode elpy jedi-core arduino-mode arduino-cli-mode writeroom-mode web-mode vlf use-package tide smooth-scrolling scad-mode rjsx-mode rainbow-mode org-plus-contrib org-bullets org ob-ipython magit highlight-indent-guides helm-projectile gdscript-mode fill-column-indicator ein counsel-projectile counsel-etags cmake-mode add-node-modules-path))
+   '(treesit-auto counsel-jq fsharp-mode lsp-ui multiple-cursors org-roam flycheck-projectile wgrep-helm wgrep helm-ag lsp-pyright string-inflection sql-indent sqlup-mode elm-mode lsp-rescript rescript-mode yaml-mode csharp-mode auctex async dap-mode json-mode helm-xref which-key company projectile helm-lsp lsp-treemacs lsp-mode nord-theme nano-modeline helm-org exec-path-from-shell dumb-jump swift-mode flycheck-swift3 helm-core helm pylint docker dockerfile-mode company-quickhelp nyan-mode elpy jedi-core arduino-mode arduino-cli-mode writeroom-mode web-mode vlf use-package tide smooth-scrolling scad-mode rjsx-mode rainbow-mode org-plus-contrib org-bullets org ob-ipython magit highlight-indent-guides helm-projectile gdscript-mode fill-column-indicator ein counsel-projectile counsel-etags cmake-mode add-node-modules-path))
  '(safe-local-variable-values '((eval org-content 2)))
  '(swift-mode:basic-offset 2)
  '(warning-suppress-log-types '((lsp-mode) (lsp-mode) (emacs)))
@@ -58,6 +58,13 @@
 (load-file "~/.emacs.d/conf/helm.conf.el")
 (load-file "~/.emacs.d/conf/projectile.conf.el")
 (load-file "~/.emacs.d/conf/org.conf.el")
-(load-file "~/.emacs.d/conf/webdev.conf.el")
+
+
+(load-file "~/.emacs.d/conf/treesit.conf.el")
+;; (load-file "~/.emacs.d/conf/eglot.conf.el")
+
+(load-file "~/.emacs.d/conf/lsp.conf.el")
+;; (load-file "~/.emacs.d/conf/webdev.conf.el")
+
 (load-file "~/.emacs.d/conf/latex.conf.el")
 
